@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.helloworld;
 
 // lombok 으로 인해 getter , setter, toString등등 필요한 생성자나 메소드들을 만들어준다.
 import lombok.AllArgsConstructor;

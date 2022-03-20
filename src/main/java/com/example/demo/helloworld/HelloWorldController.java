@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.helloworld;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class HelloWorldController {
     // bean 형태로 전송사 spring boot 는 단순 text형식이 아닌 json형태로 보내준다.
 
     @GetMapping(path = "/hello-world-Bean")
-    public  HelloWorldBean helloWorldBean(){
+    public HelloWorldBean helloWorldBean(){
         return new HelloWorldBean("Hello World");
     }
 
@@ -23,5 +23,10 @@ public class HelloWorldController {
     public String createhello(@RequestBody  @PathVariable String hi){
         HelloWorldBean message = new HelloWorldBean(hi);
         return message.getMessge();
+    }
+
+    @GetMapping(path = "/hello-world-Bean/path-variable/{name}")
+    public  HelloWorldBean helloWorldBean(@PathVariable String name){
+        return new HelloWorldBean(String.format("Hello world,%s",name));
     }
 }
