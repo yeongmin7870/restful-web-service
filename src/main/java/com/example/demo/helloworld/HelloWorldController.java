@@ -1,9 +1,20 @@
 package com.example.demo.helloworld;
 
+import com.example.demo.user.UserDaoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Locale;
 
 @RestController
 public class HelloWorldController {
+
+    @Autowired
+    private MessageSource messageSource;
+
+
+
     //Get
     // /helo-world(endpoint)
     // @RequestMapping(method=RequestMethod.Get, path="/hello-world")
@@ -28,5 +39,11 @@ public class HelloWorldController {
     @GetMapping(path = "/hello-world-Bean/path-variable/{name}")
     public  HelloWorldBean helloWorldBean(@PathVariable String name){
         return new HelloWorldBean(String.format("Hello world,%s",name));
+    }
+
+    @GetMapping(path = "/hello-world-internationalized")
+    public String helloWorldInternationalized(
+            @RequestHeader(name = "Accept-Language", required = false) Locale locale){
+        return messageSource.getMessage("greeting.message",null,locale);
     }
 }

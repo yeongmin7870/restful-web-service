@@ -57,6 +57,7 @@ public class UserController {
 
     }
 
+    // GET / users/1 or /users/10 ->
     @PutMapping("/users/{id}")
     public User updateUser(@PathVariable Integer id, @RequestBody User user){
         service.updateUser(id,user);
